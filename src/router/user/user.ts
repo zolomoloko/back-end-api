@@ -35,16 +35,33 @@ userRouter.post("/createUser", (req: Request, res: Response) => {
   res.send("Successfully created User");
 });
 
-userRouter.delete("/deleteUser", (req: Request, res: Response) => {
+userRouter.delete("/deletedUser", (req: Request, res: Response) => {
   const { userId } = req.body;
-  const existingData = fs.readFileSync(",/user.json", "utf-8");
+  const existingData = fs.readFileSync("./user.json", "utf-8");
   const deletedUser = JSON.parse(existingData).filter(
     (user: any) => user.userId !== userId
   );
+  console.log(deletedUser)
 
   fs.writeFileSync("./user.json", JSON.stringify(deletedUser, null, 2));
   res.json({ userId });
 });
 
+userRouter.put("/updateUser", (req: Request, res: Response) => {
+  const { name, age, userId }: {name: string; age: string; userId: string} =
+  req.body;
+  const existingData = fs.readFileSync("./user.json", "utf-8");
+
+  const updatedUser = JSON.parse(existingData).map((user:any)=> {
+    if(user.userId === userId) {
+      return { ...user, name: name, age: age };
+    }
+    if(user.userId !== userId) {
+      return "obso"
+    }
+  });
+  fs.writeFileSync("./user.json", JSON.stringify(updatedUser, null, 2));
+  res.json(updatedUser);
+})
 export default userRouter;
 //nanoId-unic id ganeretleg ugdug
