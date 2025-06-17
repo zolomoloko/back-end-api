@@ -1,1 +1,29 @@
-[{"name":"zolo","age":"23","userName":"zolomoloko","userEmail":"zolo@gmail.com","phoneNumber":"99852980","password":"12345678"}]
+[
+  {
+    "name": "zoloo",
+    "age": "23",
+    "userName": "zolomoloko",
+    "userEmail": "zolo@gmail.com",
+    "phoneNumber": "99852980",
+    "password": "12345678",
+    "userId": 0.5392182596520629
+  },
+  {
+    "name": "zolo",
+    "age": "23",
+    "userName": "zolomoloko",
+    "userEmail": "zolo@gmail.com",
+    "phoneNumber": "99852980",
+    "password": "12345678",
+    "userId": 0.8070651666112421
+  },
+  {
+    "name": "bold",
+    "age": "23",
+    "userName": "zolomoloko",
+    "userEmail": "zolo@gmail.com",
+    "phoneNumber": "99852980",
+    "password": "12345678",
+    "userId": "AdXhIKHCOpu-_m8s3gju-"
+  }
+]
