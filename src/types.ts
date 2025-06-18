@@ -6,5 +6,10 @@ export type User = {
   phoneNumber: string;
   password: string;
   userId: string;
-  description: string;
 };
+
+export type Todo = {
+  id: number;
+  description: string;
+  isComplete: boolean;
+}
