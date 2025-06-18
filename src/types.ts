@@ -6,4 +6,5 @@ export type User = {
   phoneNumber: string;
   password: string;
   userId: string;
+  description: string;
 };

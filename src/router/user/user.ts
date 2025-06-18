@@ -35,6 +35,7 @@ userRouter.post("/createUser", (req: Request, res: Response) => {
   res.send("Successfully created User");
 });
 
+
 userRouter.delete("/deletedUser", (req: Request, res: Response) => {
   const { userId } = req.body;
   const existingData = fs.readFileSync("./user.json", "utf-8");
@@ -55,10 +56,10 @@ userRouter.put("/updateUser", (req: Request, res: Response) => {
   const updatedUser = JSON.parse(existingData).map((user:any)=> {
     if(user.userId === userId) {
       return { ...user, name: name, age: age };
+    } else if (updatedUser.userId !== userId) {
+      return updatedUser;
     }
-    if(user.userId !== userId) {
-      return "obso"
-    }
+   
   });
   fs.writeFileSync("./user.json", JSON.stringify(updatedUser, null, 2));
   res.json(updatedUser);

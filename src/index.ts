@@ -3,7 +3,7 @@ import express, { Request, Response } from "express";
 import { User } from "./types";
 import userRouter from "./router/user/user";
 const app = express(); //ene n shuud neg server asaaj ugdug
-app.use(express.json());
+app.use(express.json()); 
 app.get("/", (req, res) => {
   res.send({ name: "hello world" , age: "1"});
 });
@@ -49,7 +49,6 @@ app.get("/", (req, res) => {
 // });
 app.use("/", userRouter);
 
-app.listen(3000, () => {
-  // hed deer asaah portoo bichij ugnu
+app.listen(3000, () => {// hed deer asaah portoo bichij ugnu
   console.log(`Example app listening on port http://localhost:3000`);
 });
