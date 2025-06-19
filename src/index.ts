@@ -2,6 +2,7 @@ import fs from "fs-extra";
 import express, { Request, Response } from "express";
 import { User } from "./types";
 import userRouter from "./router/user/user";
+import todoRouter from "./router/todo/todo";
 const app = express(); //ene n shuud neg server asaaj ugdug
 app.use(express.json()); 
 app.get("/", (req, res) => {
@@ -47,7 +48,7 @@ app.get("/", (req, res) => {
 //   const users = fs.readFileSync("./user.json", { encoding: "utf8", flag: "r" });
 //   res.json(JSON.parse(users));
 // });
-app.use("/", userRouter);
+app.use("/todo", todoRouter);
 
 app.listen(3000, () => {// hed deer asaah portoo bichij ugnu
   console.log(`Example app listening on port http://localhost:3000`);

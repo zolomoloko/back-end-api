@@ -1,12 +1,9 @@
-import { Todo } from "../src/types";
+import { Todo } from "../types";
 import fs from "fs-extra";
-import express, { Request, Response } from "express";
+import express, {  Request, Response } from "express";
 
-export const todos: Todo[] = [];
-const getTodos = (req: Request, res: Response) => {
-  res.json({ todos })
-}
-const createTodo = (req: Request, res: Response) => {
+ let todos: Todo[] = [];
+export const createTodo = (req: Request, res: Response) => {
   const {description} = req.body
   const filePath = "./todo.json";
   const id = Math.random();
@@ -14,7 +11,7 @@ const createTodo = (req: Request, res: Response) => {
   if(fs.existsSync(filePath)) {
     const existingData = fs.readFileSync(filePath, "utf-8");
     if (existingData.trim().length > 0) {
-      todo:String = JSON.parse(existingData)
+      todos = JSON.parse(existingData)
     }
   }
   todos.push({
@@ -24,4 +21,3 @@ const createTodo = (req: Request, res: Response) => {
 
   res.send("Successfully created todos");
 };
-export default {getTodos, createTodo}
