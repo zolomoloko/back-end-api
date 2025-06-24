@@ -27,6 +27,7 @@
     "debug": "^4.4.1",
     "depd": "^2.0.0",
     "diff": "^4.0.2",
+    "dotenv": "^16.5.0",
     "dunder-proto": "^1.0.1",
     "dynamic-dedupe": "^0.3.0",
     "ee-first": "^1.1.1",

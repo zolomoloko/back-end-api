@@ -2,16 +2,17 @@ import { MongoClient, Db } from "mongodb";
 import todoRouter from "./router/todo/todo";
 import userRouter from "./router/user/user";
 import express, { Request, Response } from "express";
+import "dotenv/config";
 
 const app = express(); //ene n shuud neg server asaaj ugdug
 app.use(express.json());
-let db: Db;
+export let db: Db;
+app.use("/", todoRouter);
 
-const uri = "mongodb+srv://zoljargalG:12345678Zl@cluster0.rnpyotm.mongodb.net/";
 const connectDb = async () => {
   try {
-    const client = new MongoClient(uri);
-    // await client.connect();
+    const client = new MongoClient(process.env.MONGO_URI!);
+    await client.connect();
     db = client.db("sample_mflix");
     console.log("database connected");
     return client;
@@ -21,7 +22,7 @@ const connectDb = async () => {
 };
 
 app.get("/", async (req: Request, res: Response) => {
-  const client = new MongoClient(uri);
+  const client = new MongoClient(process.env.MONGO_URI!);
   await client.connect();
   // ymar db gees awhaa bichij ugnu
   const db = client.db("sample_mflix");
@@ -34,9 +35,8 @@ app.get("/", async (req: Request, res: Response) => {
 
 app.post("/addUser", async (req: Request, res: Response) => {
   try {
-    const response = db
-      .collection("users")
-      .insertOne({ name: "Vampire", age: 2900 });
+    const { name, age } = req.body;
+    const response = db.collection("users").insertOne({ name, age });
     res.json((await response).insertedId.getTimestamp());
   } catch (error) {
     console.log(error);
